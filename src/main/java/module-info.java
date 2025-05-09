@@ -3,6 +3,6 @@ module com.example.vocafy {
     requires javafx.fxml;
 
 
-    opens com.example.vocafy to javafx.fxml;
-    exports com.example.vocafy;
+    opens at.htlleonding.vocafy to javafx.fxml;
+    exports at.htlleonding.vocafy;
 }

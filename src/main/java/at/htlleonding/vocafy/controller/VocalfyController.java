@@ -1,9 +1,9 @@
-package com.example.vocafy;
+package at.htlleonding.vocafy;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class VocalfyController {
     @FXML
     private Label welcomeText;
 
