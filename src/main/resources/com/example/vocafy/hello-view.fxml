@@ -1,16 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.vocafy.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vocafy.HelloController">
+   <children>
+      <Slider layoutX="72.0" layoutY="305.0" prefHeight="14.0" prefWidth="455.0" snapToTicks="true" />
+      <ImageView fitHeight="180.0" fitWidth="180.0" layoutX="210.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@noImage.png" />
+         </image>
+      </ImageView>
+      <Label alignment="TOP_CENTER" layoutX="194.0" layoutY="265.0" prefHeight="38.0" prefWidth="210.0" text="Overdose - Natori" />
+      <HBox alignment="CENTER" layoutX="424.0" layoutY="332.0" prefHeight="38.0" prefWidth="146.0">
+         <children>
+            <Label prefHeight="35.0" prefWidth="28.0" text="🔊">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Slider prefHeight="14.0" prefWidth="98.0">
+               <HBox.margin>
+                  <Insets left="4.0" />
+               </HBox.margin>
+            </Slider>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="176.0" layoutY="339.0" prefHeight="25.0" prefWidth="248.0">
+         <children>
+            <Button mnemonicParsing="false" text="&lt;">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Pause">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="&gt;">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="158.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="172.0" text="Songs">
+               <VBox.margin>
+                  <Insets bottom="7.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Agency FB" size="22.0" />
+               </font>
+            </Label>
+            <ListView prefHeight="206.0" prefWidth="140.0" />
+         </children>
+      </VBox>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="206.0" layoutX="427.0" layoutY="47.0" stroke="#a6a6a6" strokeType="INSIDE" strokeWidth="0.65" width="158.0" />
+      <VBox layoutX="427.0" layoutY="14.0" prefHeight="234.0" prefWidth="158.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="27.0" prefWidth="163.0" text="Add Song">
+               <font>
+                  <Font name="Agency FB" size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="7.0" />
+               </VBox.margin>
+            </Label>
+            <VBox alignment="TOP_CENTER" prefHeight="71.0" prefWidth="158.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Choose Song" />
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="155.0" text="Song Name" visible="false">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="68.0" prefWidth="158.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Choose Image" />
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="155.0" text="Image Name" visible="false" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="47.0" prefWidth="158.0">
+               <children>
+                  <Button alignment="TOP_CENTER" mnemonicParsing="false" text="Add Song" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
