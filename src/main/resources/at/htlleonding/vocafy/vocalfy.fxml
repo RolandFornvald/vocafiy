@@ -82,8 +82,8 @@
             </Label>
             <VBox alignment="TOP_CENTER" prefHeight="71.0" prefWidth="158.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Choose Song" onAction="#onSelectSongClicked" />
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="155.0" text="Song Name" visible="false">
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Select Song" onAction="#onSelectSongClicked" />
+                  <Label fx:id="songSelectedLabel" alignment="CENTER" prefHeight="30.0" prefWidth="155.0" text="Song Name" visible="false">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -95,13 +95,13 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="68.0" prefWidth="158.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Choose Image" />
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="155.0" text="Image Name" visible="false" />
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Select Image" onAction="#onSelectImageClicked" />
+                  <Label fx:id="imageSelectedLabel" alignment="CENTER" prefHeight="30.0" prefWidth="155.0" text="Image Name" visible="false" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="47.0" prefWidth="158.0">
                <children>
-                  <Button alignment="TOP_CENTER" mnemonicParsing="false" text="Add Song" />
+                  <Button alignment="TOP_CENTER" mnemonicParsing="false" text="Add Song" onAction="#onAddSongClicked" />
                </children>
             </VBox>
          </children>
