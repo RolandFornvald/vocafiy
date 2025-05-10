@@ -2,6 +2,7 @@ package at.htlleonding.vocafy.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 
@@ -13,14 +14,37 @@ import java.util.Set;
 public class VocalfyController {
 
     @FXML
-    public Label songSelectedLabel;
+    private Label songSelectedLabel;
+
+    @FXML
+    private Button pauseButton;
+    @FXML
+    private Button prevButton;
+    @FXML
+    private Button nextButton;
 
     @FXML
     private Label imageSelectedLabel;
 
-
     private String songPath;
     private String imagePath;
+
+    @FXML
+    private void initialize() {
+        prevButton.getStyleClass().addAll("round-button", "prev-shape");
+        pauseButton.getStyleClass().addAll("round-button", "pause-shape");
+        nextButton.getStyleClass().addAll("round-button", "next-shape");
+
+        pauseButton.setOnAction(e -> {
+            if (pauseButton.getStyleClass().contains("pause-shape")) {
+                pauseButton.getStyleClass().remove("pause-shape");
+                pauseButton.getStyleClass().add("play-shape");
+            } else {
+                pauseButton.getStyleClass().remove("play-shape");
+                pauseButton.getStyleClass().add("pause-shape");
+            }
+        });
+    }
 
     @FXML
     private void onSelectSongClicked() {

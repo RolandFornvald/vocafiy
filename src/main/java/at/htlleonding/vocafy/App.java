@@ -12,6 +12,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("vocalfy.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.setTitle("Vocalfy");
         stage.setScene(scene);
         stage.show();

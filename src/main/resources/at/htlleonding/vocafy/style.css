@@ -1,0 +1,38 @@
+.round-button {
+    -fx-background-color: #2c3e50;
+    -fx-background-radius: 50%;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0.5, 0, 2);
+    -fx-alignment: center;
+    -fx-shape: "";
+    -fx-scale-shape: false;
+}
+
+.pause-shape {
+    -fx-shape: "M 12 8 H 16 V 24 H 12 Z M 20 8 H 24 V 24 H 20 Z";
+}
+
+.play-shape {
+    -fx-shape: "M 12 8 L 24 16 L 12 24 Z";
+}
+
+.prev-shape {
+    -fx-shape: "M 0 8 H 4 V 24 H 0 Z M 14 8 L 14 24 L 2 16 Z";
+}
+
+.next-shape {
+    -fx-shape: "M 0 8 L 0 24 L 10 16 Z M 10 8 H 14 V 24 H 10 Z";
+}
+
+.round-button:hover {
+    -fx-background-color: #34495e;
+}
+
+.round-button:pressed {
+    -fx-background-color: #5b84a5;
+}
