@@ -1,4 +1,4 @@
-module com.example.vocafy {
+module at.htlleonding.vocafy {
     requires javafx.controls;
     requires javafx.fxml;
 
