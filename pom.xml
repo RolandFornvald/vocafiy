@@ -21,6 +21,11 @@
             <version>17.0.6</version>
         </dependency>
         <dependency>
+            <groupId>im.ene.toro2</groupId>
+            <artifactId>toro-ext-mediaplayer</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
             <groupId>net.java.linoleum</groupId>
             <artifactId>media</artifactId>
             <version>1.6</version>
