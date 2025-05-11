@@ -22,20 +22,6 @@
          </image>
       </ImageView>
       <Label alignment="TOP_CENTER" layoutX="194.0" layoutY="265.0" prefHeight="38.0" prefWidth="210.0" text="Overdose - Natori" />
-      <HBox alignment="CENTER" layoutX="424.0" layoutY="332.0" prefHeight="38.0" prefWidth="146.0">
-         <children>
-            <Label prefHeight="35.0" prefWidth="28.0" text="🔊" fx:id="volumeIcon">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Slider fx:id="volumeSlider" prefHeight="14.0" prefWidth="98.0">
-               <HBox.margin>
-                  <Insets left="4.0" />
-               </HBox.margin>
-            </Slider>
-         </children>
-      </HBox>
       <HBox alignment="TOP_CENTER" layoutX="176.0" layoutY="325.0" prefHeight="25.0" prefWidth="248.0">
          <children>
             <Button fx:id="prevButton" mnemonicParsing="false">
@@ -105,5 +91,11 @@
             </VBox>
          </children>
       </VBox>
+      <Slider fx:id="volumeSlider" layoutX="471.0" layoutY="343.0" prefHeight="14.0" prefWidth="98.0" />
+      <Label fx:id="volumeIcon" layoutX="436.0" layoutY="332.0" prefHeight="35.0" prefWidth="28.0" text="🔊">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

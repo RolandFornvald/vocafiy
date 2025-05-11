@@ -96,13 +96,16 @@ public class VocalfyController {
                 double value = volumeSlider.getValue() / 100;
                 mediaPlayer.setVolume(value);
                 if(value == 0){
-                    volumeIcon.setText("🔈");
+                    volumeIcon.setText("🔇");
                 }
-                else if(value > 0.5){
+                else if(value > 0.7){
                     volumeIcon.setText("🔊");
                 }
-                else if(value > 0.1){
+                else if(value > 0.4){
                     volumeIcon.setText("🔉");
+                }
+                else if(value > 0.1){
+                    volumeIcon.setText("🔈");
                 }
             });
 
