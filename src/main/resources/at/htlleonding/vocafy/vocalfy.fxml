@@ -13,10 +13,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.htlleonding.vocafy.controller.VocalfyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.htlleonding.vocafy.controller.VocalfyController">
    <children>
-      <Slider layoutX="72.0" layoutY="305.0" prefHeight="14.0" prefWidth="455.0" snapToTicks="true" />
+      <Slider fx:id="progressBar" layoutX="72.0" layoutY="305.0" prefHeight="14.0" prefWidth="455.0" snapToTicks="true" />
       <ImageView fitHeight="180.0" fitWidth="180.0" layoutX="210.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@noImage.png" />
@@ -25,12 +24,12 @@
       <Label alignment="TOP_CENTER" layoutX="194.0" layoutY="265.0" prefHeight="38.0" prefWidth="210.0" text="Overdose - Natori" />
       <HBox alignment="CENTER" layoutX="424.0" layoutY="332.0" prefHeight="38.0" prefWidth="146.0">
          <children>
-            <Label prefHeight="35.0" prefWidth="28.0" text="🔊">
+            <Label prefHeight="35.0" prefWidth="28.0" text="🔊" fx:id="volumeIcon">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Slider prefHeight="14.0" prefWidth="98.0">
+            <Slider fx:id="volumeSlider" prefHeight="14.0" prefWidth="98.0">
                <HBox.margin>
                   <Insets left="4.0" />
                </HBox.margin>
@@ -39,17 +38,17 @@
       </HBox>
       <HBox alignment="TOP_CENTER" layoutX="176.0" layoutY="325.0" prefHeight="25.0" prefWidth="248.0">
          <children>
-            <Button mnemonicParsing="false" fx:id="prevButton">
+            <Button fx:id="prevButton" mnemonicParsing="false">
                <HBox.margin>
                   <Insets left="10.0" right="20.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" fx:id="pauseButton">
+            <Button fx:id="pauseButton" mnemonicParsing="false">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" fx:id="nextButton">
+            <Button fx:id="nextButton" mnemonicParsing="false">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" />
                </HBox.margin>
@@ -82,7 +81,7 @@
             </Label>
             <VBox alignment="TOP_CENTER" prefHeight="71.0" prefWidth="158.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Select Song" onAction="#onSelectSongClicked" />
+                  <Button mnemonicParsing="false" onAction="#onSelectSongClicked" prefHeight="26.0" prefWidth="92.0" text="Select Song" />
                   <Label fx:id="songSelectedLabel" alignment="CENTER" prefHeight="30.0" prefWidth="155.0" text="Song Name" visible="false">
                      <VBox.margin>
                         <Insets />
@@ -95,13 +94,13 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="68.0" prefWidth="158.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Select Image" onAction="#onSelectImageClicked" />
+                  <Button mnemonicParsing="false" onAction="#onSelectImageClicked" prefHeight="26.0" prefWidth="92.0" text="Select Image" />
                   <Label fx:id="imageSelectedLabel" alignment="CENTER" prefHeight="30.0" prefWidth="155.0" text="Image Name" visible="false" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="47.0" prefWidth="158.0">
                <children>
-                  <Button alignment="TOP_CENTER" mnemonicParsing="false" text="Add Song" onAction="#onAddSongClicked" />
+                  <Button alignment="TOP_CENTER" mnemonicParsing="false" onAction="#onAddSongClicked" text="Add Song" />
                </children>
             </VBox>
          </children>

@@ -1,10 +1,18 @@
 package at.htlleonding.vocafy.controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.util.Arrays;
@@ -12,22 +20,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class VocalfyController {
-
+    @FXML
+    private Label volumeIcon;
+    @FXML
+    private Slider progressBar;
+    @FXML
+    private Slider volumeSlider;
     @FXML
     private Label songSelectedLabel;
-
     @FXML
     private Button pauseButton;
     @FXML
     private Button prevButton;
     @FXML
     private Button nextButton;
-
     @FXML
     private Label imageSelectedLabel;
 
     private String songPath;
     private String imagePath;
+    private MediaPlayer mediaPlayer;
 
     @FXML
     private void initialize() {
@@ -37,9 +49,15 @@ public class VocalfyController {
 
         pauseButton.setOnAction(e -> {
             if (pauseButton.getStyleClass().contains("pause-shape")) {
+                if (mediaPlayer != null) {
+                    mediaPlayer.pause();
+                }
                 pauseButton.getStyleClass().remove("pause-shape");
                 pauseButton.getStyleClass().add("play-shape");
             } else {
+                if (mediaPlayer != null) {
+                    mediaPlayer.play();
+                }
                 pauseButton.getStyleClass().remove("play-shape");
                 pauseButton.getStyleClass().add("pause-shape");
             }
@@ -62,6 +80,34 @@ public class VocalfyController {
 
             songSelectedLabel.setText(fileName);
             songSelectedLabel.setVisible(true);
+
+            Media media = new Media(songPath);
+            mediaPlayer = new MediaPlayer(media);
+
+            mediaPlayer.currentTimeProperty().addListener((_, _, newValue) -> progressBar.setValue(newValue.toSeconds()));
+
+            progressBar.setOnMousePressed((_) -> mediaPlayer.seek(Duration.seconds(progressBar.getValue())));
+
+            mediaPlayer.setOnReady(() -> progressBar.setMax(media.getDuration().toSeconds()));
+
+            volumeSlider.setValue(mediaPlayer.getVolume() * 100);
+
+            volumeSlider.valueProperty().addListener((_) -> {
+                double value = volumeSlider.getValue() / 100;
+                mediaPlayer.setVolume(value);
+                if(value == 0){
+                    volumeIcon.setText("🔈");
+                }
+                else if(value > 0.5){
+                    volumeIcon.setText("🔊");
+                }
+                else if(value > 0.1){
+                    volumeIcon.setText("🔉");
+                }
+            });
+
+
+            mediaPlayer.play();
         }catch (Exception e){
             showAlert("Error occurred selecting song");
         }
