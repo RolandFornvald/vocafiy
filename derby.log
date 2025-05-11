@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sun May 11 10:45:59 UTC 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.17.1.0 - (1913217): instance a816c00e-0196-bef3-9ff7-000006b7b460 
+on database directory /home/roland/IdeaProjects/vocafiy/songsdb with class loader com.intellij.database.remote.jdbc.impl.JdbcClassLoader$JdbcClassLoaderImpl@36d64342 
+Loaded from file:/home/roland/.config/JetBrains/IntelliJIdea2025.1/jdbc-drivers/Apache%20Derby/10.17.1.0/org/apache/derby/derby/10.17.1.0/derby-10.17.1.0.jar
+java.vendor=JetBrains s.r.o.
+java.runtime.version=21.0.6+9-b895.109
+user.dir=/home/roland/IdeaProjects/vocafiy
+os.name=Linux
+os.arch=amd64
+os.version=6.14.4-arch1-2
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
