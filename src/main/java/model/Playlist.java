@@ -6,11 +6,9 @@ import java.sql.*;
 
 public class Playlist {
     private final ObservableList<Song> songs;
-    private final Connection connection;
 
-    public Playlist(Connection connection) {
+    public Playlist() {
         this.songs = FXCollections.observableArrayList();
-        this.connection = connection;
         loadSongsFromDatabase();
     }
 
@@ -19,9 +17,12 @@ public class Playlist {
     }
 
     public void addSong(Song song) {
-        try {
-            String sql = "INSERT INTO songs (title, songPath, imagePath) VALUES (?, ?, ?)";
-            PreparedStatement stmt = connection.prepareStatement(sql);
+        String sql = "INSERT INTO songs (title, songPath, imagePath) VALUES (?, ?, ?)";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:derby:songsdb");
+             PreparedStatement stmt = connection.prepareStatement(sql))
+        {
+
             stmt.setString(1, song.getSongTitle());
             stmt.setString(2, song.getSongPath());
             stmt.setString(3, song.getImagePath());
@@ -34,11 +35,11 @@ public class Playlist {
     }
 
     private void loadSongsFromDatabase() {
-        try {
-            String sql = "SELECT * FROM songs";
-            Statement stmt = connection.createStatement();
+        String sql = "SELECT * FROM songs";
+        try (Connection connection = DriverManager.getConnection("jdbc:derby:songsdb");
+             Statement stmt = connection.prepareStatement(sql))
+        {
             ResultSet rs = stmt.executeQuery(sql);
-
             while (rs.next()) {
                 String title = rs.getString("title");
                 String path = rs.getString("path");
