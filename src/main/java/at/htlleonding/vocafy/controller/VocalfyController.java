@@ -46,7 +46,7 @@ public class VocalfyController {
 
     @FXML
     private void initialize() {
-        playlist.getSongs();
+        //playlist.getSongs();
         prevButton.getStyleClass().addAll("round-button", "prev-shape");
         pauseButton.getStyleClass().addAll("round-button", "pause-shape");
         nextButton.getStyleClass().addAll("round-button", "next-shape");
