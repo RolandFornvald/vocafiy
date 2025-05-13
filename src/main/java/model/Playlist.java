@@ -20,10 +20,11 @@ public class Playlist {
 
     public void addSong(Song song) {
         try {
-            String sql = "INSERT INTO songs (songPath, imagePath) VALUES (?, ?)";
+            String sql = "INSERT INTO songs (title, songPath, imagePath) VALUES (?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, song.getSongPath());
-            stmt.setString(2, song.getImagePath());
+            stmt.setString(1, song.getSongTitle());
+            stmt.setString(2, song.getSongPath());
+            stmt.setString(3, song.getImagePath());
             stmt.executeUpdate();
 
             songs.add(song);
