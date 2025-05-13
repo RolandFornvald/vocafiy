@@ -36,3 +36,10 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### DB ###
+derby.log
+songsdb/db.lck
+songsdb/log/log.ctrl
+songsdb/log/log1.dat
+songsdb/log/logmirror.ctrl
