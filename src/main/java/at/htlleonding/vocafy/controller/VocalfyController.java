@@ -17,6 +17,7 @@ import model.Playlist;
 import model.Song;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -40,7 +41,7 @@ public class VocalfyController {
     private Label imageSelectedLabel;
 
     private String songPath;
-    private String imagePath;
+    private String imagePath = System.getProperty("user.dir") + "/resources/at.htlleonding.vocafy/noImage.png";
     private MediaPlayer mediaPlayer;
     private Playlist playlist;
 
@@ -142,8 +143,8 @@ public class VocalfyController {
 
     @FXML
     private void onAddSongClicked() {
-        if (songPath == null || songPath.isEmpty() || imagePath == null || imagePath.isEmpty()) {
-            showAlert("Select an Image and Song");
+        if (songPath == null || songPath.isEmpty()) {
+            showAlert("Select a Song (with optional image)");
             return;
         }
         String title = new File(songPath).getName();
