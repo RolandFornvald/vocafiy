@@ -2,6 +2,7 @@ module at.htlleonding.vocafy {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.media;
+    requires java.sql;
 
 
     opens at.htlleonding.vocafy.controller to javafx.fxml;

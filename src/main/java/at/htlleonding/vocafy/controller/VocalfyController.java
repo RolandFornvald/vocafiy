@@ -13,6 +13,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import model.Playlist;
+import model.Song;
 
 import java.io.File;
 import java.util.Arrays;
@@ -40,9 +42,11 @@ public class VocalfyController {
     private String songPath;
     private String imagePath;
     private MediaPlayer mediaPlayer;
+    private Playlist playlist;
 
     @FXML
     private void initialize() {
+        playlist.getSongs();
         prevButton.getStyleClass().addAll("round-button", "prev-shape");
         pauseButton.getStyleClass().addAll("round-button", "pause-shape");
         nextButton.getStyleClass().addAll("round-button", "next-shape");
@@ -140,8 +144,23 @@ public class VocalfyController {
     private void onAddSongClicked() {
         if (songPath == null || songPath.isEmpty() || imagePath == null || imagePath.isEmpty()) {
             showAlert("Select an Image and Song");
+            return;
+        }
+        String title = new File(songPath).getName();
+
+        Song newSong = new Song(title, songPath, imagePath);
+
+        try {
+            playlist.addSong(newSong);
+            showAlert("Song added successfully!");
+            songPath = null;
+            imagePath = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Failed to add song: " + e.getMessage());
         }
     }
+
 
     private void showAlert(String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR, content);
