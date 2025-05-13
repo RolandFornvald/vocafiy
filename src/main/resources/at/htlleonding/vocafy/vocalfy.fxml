@@ -16,12 +16,12 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.htlleonding.vocafy.controller.VocalfyController">
    <children>
       <Slider fx:id="progressBar" layoutX="72.0" layoutY="305.0" prefHeight="14.0" prefWidth="455.0" snapToTicks="true" />
-      <ImageView fitHeight="180.0" fitWidth="180.0" layoutX="210.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="selectedSongImage" fitWidth="180.0" layoutX="210.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@noImage.png" />
+            <Image url="@noImage.png"/>
          </image>
       </ImageView>
-      <Label alignment="TOP_CENTER" layoutX="194.0" layoutY="265.0" prefHeight="38.0" prefWidth="210.0" text="Overdose - Natori" />
+      <Label alignment="TOP_CENTER" layoutX="194.0" layoutY="265.0" prefHeight="38.0" prefWidth="210.0" text="Overdose - Natori" fx:id="selectedSongTitle"/>
       <HBox alignment="TOP_CENTER" layoutX="176.0" layoutY="325.0" prefHeight="25.0" prefWidth="248.0">
          <children>
             <Button fx:id="prevButton" mnemonicParsing="false">
@@ -51,7 +51,7 @@
                   <Font name="Agency FB" size="22.0" />
                </font>
             </Label>
-            <ListView prefHeight="206.0" prefWidth="140.0" />
+            <ListView prefHeight="206.0" prefWidth="140.0" fx:id="songsListView"/>
          </children>
       </VBox>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="206.0" layoutX="427.0" layoutY="47.0" stroke="#a6a6a6" strokeType="INSIDE" strokeWidth="0.65" width="158.0" />

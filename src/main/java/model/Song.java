@@ -15,8 +15,12 @@ public class Song {
     public String getImagePath() {
         return imagePath;
     }
-
     public String getSongTitle() {
+        return songTitle;
+    }
+
+    @Override
+    public String toString() {
         return songTitle;
     }
 }

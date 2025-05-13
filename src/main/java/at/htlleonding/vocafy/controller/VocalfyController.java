@@ -2,12 +2,13 @@ package at.htlleonding.vocafy.controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -23,6 +24,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class VocalfyController {
+    @FXML
+    private ImageView selectedSongImage;
+    @FXML
+    private Label selectedSongTitle;
+    @FXML
+    private ListView<Song> songsListView;
     @FXML
     private Label volumeIcon;
     @FXML
@@ -43,14 +50,59 @@ public class VocalfyController {
     private String songPath;
     private String imagePath = System.getProperty("user.dir") + "/resources/at.htlleonding.vocafy/noImage.png";
     private MediaPlayer mediaPlayer;
-    private Playlist playlist;
+    private Playlist playlist = new Playlist();
 
     @FXML
     private void initialize() {
-        //playlist.getSongs();
+        ObservableList<Song> songs = playlist.getSongs();
+        FilteredList<Song> filteredSongs = songs.sorted().filtered(null);
+        songsListView.setItems(filteredSongs);
         prevButton.getStyleClass().addAll("round-button", "prev-shape");
         pauseButton.getStyleClass().addAll("round-button", "pause-shape");
         nextButton.getStyleClass().addAll("round-button", "next-shape");
+
+
+        songsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+
+            Media media = new Media(newValue.getSongPath());
+            mediaPlayer = new MediaPlayer(media);
+
+            selectedSongTitle.setText(newValue.getSongTitle());
+            if(!newValue.getImagePath().isEmpty()) {
+                selectedSongImage.setImage(new Image(newValue.getImagePath()));
+            }else{
+                selectedSongImage.setImage(new Image(imagePath));
+            }
+
+
+            mediaPlayer.currentTimeProperty().addListener((_, _, nV) -> progressBar.setValue(nV.toSeconds()));
+
+            progressBar.setOnMousePressed((_) -> mediaPlayer.seek(Duration.seconds(progressBar.getValue())));
+
+            mediaPlayer.setOnReady(() -> progressBar.setMax(media.getDuration().toSeconds()));
+
+            volumeSlider.setValue(mediaPlayer.getVolume() * 100);
+
+            volumeSlider.valueProperty().addListener((_) -> {
+                double value = volumeSlider.getValue() / 100;
+                mediaPlayer.setVolume(value);
+                if(value == 0){
+                    volumeIcon.setText("🔇");
+                }
+                else if(value > 0.7){
+                    volumeIcon.setText("🔊");
+                }
+                else if(value > 0.4){
+                    volumeIcon.setText("🔉");
+                }
+                else if(value > 0.1){
+                    volumeIcon.setText("🔈");
+                }
+            });
+
+
+            mediaPlayer.play();
+        });
 
         pauseButton.setOnAction(e -> {
             if (pauseButton.getStyleClass().contains("pause-shape")) {
@@ -85,37 +137,6 @@ public class VocalfyController {
 
             songSelectedLabel.setText(fileName);
             songSelectedLabel.setVisible(true);
-
-            Media media = new Media(songPath);
-            mediaPlayer = new MediaPlayer(media);
-
-            mediaPlayer.currentTimeProperty().addListener((_, _, newValue) -> progressBar.setValue(newValue.toSeconds()));
-
-            progressBar.setOnMousePressed((_) -> mediaPlayer.seek(Duration.seconds(progressBar.getValue())));
-
-            mediaPlayer.setOnReady(() -> progressBar.setMax(media.getDuration().toSeconds()));
-
-            volumeSlider.setValue(mediaPlayer.getVolume() * 100);
-
-            volumeSlider.valueProperty().addListener((_) -> {
-                double value = volumeSlider.getValue() / 100;
-                mediaPlayer.setVolume(value);
-                if(value == 0){
-                    volumeIcon.setText("🔇");
-                }
-                else if(value > 0.7){
-                    volumeIcon.setText("🔊");
-                }
-                else if(value > 0.4){
-                    volumeIcon.setText("🔉");
-                }
-                else if(value > 0.1){
-                    volumeIcon.setText("🔈");
-                }
-            });
-
-
-            mediaPlayer.play();
         }catch (Exception e){
             showAlert("Error occurred selecting song");
         }
