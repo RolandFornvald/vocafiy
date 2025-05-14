@@ -23,6 +23,8 @@ import java.util.Set;
 
 public class VocalfyController {
     @FXML
+    private TextField searchTextField;
+    @FXML
     private TextField volumeTextField;
     @FXML
     private ImageView selectedSongImage;
@@ -52,11 +54,12 @@ public class VocalfyController {
     private String imagePath = DEFAULT_IMAGE_PATH;
     private MediaPlayer mediaPlayer;
     private final Playlist playlist = new Playlist();
+    FilteredList<Song> filteredSongs;
 
     @FXML
     private void initialize() {
         ObservableList<Song> songs = playlist.getSongs();
-        FilteredList<Song> filteredSongs = songs.sorted().filtered(null);
+        filteredSongs = songs.sorted().filtered(null);
         songsListView.setItems(filteredSongs);
 
         prevButton.getStyleClass().addAll("round-button", "prev-shape");
@@ -193,6 +196,10 @@ public class VocalfyController {
         }
     }
 
+    @FXML
+    private void onSearchClicked() {
+        filteredSongs.setPredicate(p -> p.getSongTitle().toLowerCase().contains(searchTextField.getText().toLowerCase()));
+    }
 
     private void showAlert(String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR, content);
