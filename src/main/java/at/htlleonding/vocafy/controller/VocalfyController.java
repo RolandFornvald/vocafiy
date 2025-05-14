@@ -65,6 +65,9 @@ public class VocalfyController {
 
 
         songsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(mediaPlayer != null) {
+                mediaPlayer.stop();
+            }
 
             volumeTextField.textProperty().bindBidirectional(volumeSlider.valueProperty(), integerStringConverter);
 
