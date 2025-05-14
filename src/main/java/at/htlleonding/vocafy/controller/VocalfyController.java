@@ -124,6 +124,23 @@ public class VocalfyController {
                 pauseButton.getStyleClass().add("pause-shape");
             }
         });
+
+        // generated via chatgpt
+        prevButton.setOnAction(e -> {
+            int currentIndex = songsListView.getSelectionModel().getSelectedIndex();
+            if (filteredSongs.isEmpty()) return;
+            int newIndex = (currentIndex - 1 + filteredSongs.size()) % filteredSongs.size();
+            songsListView.getSelectionModel().select(newIndex);
+        });
+
+        // generated via chatgpt
+        nextButton.setOnAction(e -> {
+            int currentIndex = songsListView.getSelectionModel().getSelectedIndex();
+            if (filteredSongs.isEmpty()) return;
+            int newIndex = (currentIndex + 1) % filteredSongs.size();
+            songsListView.getSelectionModel().select(newIndex);
+        });
+
     }
 
     @FXML
