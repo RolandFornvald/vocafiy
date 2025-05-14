@@ -190,7 +190,10 @@ public class VocalfyController {
             showAlert("Select a Song (with optional image)");
             return;
         }
-        String title = new File(songPath).getName();
+
+        String fullTitle = new File(songPath).getName();
+        int dotIndex = fullTitle.lastIndexOf('.');
+        String title = (dotIndex > 0) ? fullTitle.substring(0, dotIndex) : fullTitle;
 
         Song newSong = new Song(title, songPath, imagePath);
 
