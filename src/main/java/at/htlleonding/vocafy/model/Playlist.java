@@ -40,7 +40,6 @@ public class Playlist {
              PreparedStatement stmt = connection.prepareStatement(sql))
         {
             ResultSet rs = stmt.executeQuery();
-            System.out.println("test");
             while (rs.next()) {
                 String title = rs.getString("title");
                 String songPath = rs.getString("songPath");
