@@ -16,11 +16,11 @@ public class Song {
         return imagePath;
     }
     public String getSongTitle() {
-        return songTitle;
+        return songTitle.replace("%20", " ");
     }
 
     @Override
     public String toString() {
-        return songTitle;
+        return songTitle.replace("%20", " ");
     }
 }

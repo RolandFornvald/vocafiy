@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,10 +19,10 @@
       <Slider fx:id="progressBar" layoutX="72.0" layoutY="305.0" prefHeight="14.0" prefWidth="455.0" snapToTicks="true" />
       <ImageView fx:id="selectedSongImage" fitWidth="180.0" layoutX="210.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@noImage.png"/>
+            <Image url="@noImage.png" />
          </image>
       </ImageView>
-      <Label alignment="TOP_CENTER" layoutX="194.0" layoutY="265.0" prefHeight="38.0" prefWidth="210.0" text="Overdose - Natori" fx:id="selectedSongTitle"/>
+      <Label fx:id="selectedSongTitle" alignment="TOP_CENTER" layoutX="194.0" layoutY="265.0" prefHeight="38.0" prefWidth="210.0" text="Overdose - Natori" />
       <HBox alignment="TOP_CENTER" layoutX="176.0" layoutY="325.0" prefHeight="25.0" prefWidth="248.0">
          <children>
             <Button fx:id="prevButton" mnemonicParsing="false">
@@ -51,7 +52,7 @@
                   <Font name="Agency FB" size="22.0" />
                </font>
             </Label>
-            <ListView prefHeight="206.0" prefWidth="140.0" fx:id="songsListView"/>
+            <ListView fx:id="songsListView" prefHeight="206.0" prefWidth="140.0" />
          </children>
       </VBox>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="206.0" layoutX="427.0" layoutY="47.0" stroke="#a6a6a6" strokeType="INSIDE" strokeWidth="0.65" width="158.0" />
@@ -97,5 +98,6 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <TextField fx:id="volumeTextField" layoutX="492.0" layoutY="362.0" prefHeight="26.0" prefWidth="55.0" />
    </children>
 </AnchorPane>

@@ -12,13 +12,18 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import at.htlleonding.vocafy.model.Playlist;
 import at.htlleonding.vocafy.model.Song;
+import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public class VocalfyController {
+    @FXML
+    private TextField volumeTextField;
     @FXML
     private ImageView selectedSongImage;
     @FXML
@@ -43,7 +48,8 @@ public class VocalfyController {
     private Label imageSelectedLabel;
 
     private String songPath;
-    private String imagePath = System.getProperty("user.dir") + "/resources/at.htlleonding.vocafy/noImage.png";
+    private final String DEFAULT_IMAGE_PATH = getClass().getResource("/at/htlleonding/vocafy/noImage.png").toExternalForm();
+    private String imagePath = DEFAULT_IMAGE_PATH;
     private MediaPlayer mediaPlayer;
     private final Playlist playlist = new Playlist();
 
@@ -60,16 +66,13 @@ public class VocalfyController {
 
         songsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
+            volumeTextField.textProperty().bindBidirectional(volumeSlider.valueProperty(), integerStringConverter);
+
             Media media = new Media(newValue.getSongPath());
             mediaPlayer = new MediaPlayer(media);
 
             selectedSongTitle.setText(newValue.getSongTitle());
-            if(!newValue.getImagePath().isEmpty()) {
-                selectedSongImage.setImage(new Image(newValue.getImagePath()));
-            }else{
-                selectedSongImage.setImage(new Image(imagePath));
-            }
-
+            selectedSongImage.setImage(new Image(newValue.getImagePath()));
 
             mediaPlayer.currentTimeProperty().addListener((_, _, nV) -> progressBar.setValue(nV.toSeconds()));
 
@@ -134,7 +137,7 @@ public class VocalfyController {
             songSelectedLabel.setText(fileName);
             songSelectedLabel.setVisible(true);
         }catch (Exception e){
-            showAlert("Error occurred selecting song");
+            System.out.println("Error occurred selecting song");
         }
     }
 
@@ -154,7 +157,7 @@ public class VocalfyController {
             imageSelectedLabel.setText(fileName);
             imageSelectedLabel.setVisible(true);
         }catch (Exception e){
-            showAlert("Error occurred selecting image");
+            System.out.println("Error occurred selecting image");
         }
     }
 
@@ -170,9 +173,17 @@ public class VocalfyController {
 
         try {
             playlist.addSong(newSong);
-            showAlert("Song added successfully!");
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Song added successfully!");
+            alert.setTitle("Information");
+            alert.setHeaderText("Song Added");
+            alert.showAndWait();
+
+            imageSelectedLabel.setVisible(false);
+            songSelectedLabel.setVisible(false);
+
             songPath = null;
-            imagePath = null;
+            imagePath = DEFAULT_IMAGE_PATH;
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("Failed to add song: " + e.getMessage());
@@ -202,4 +213,23 @@ public class VocalfyController {
 
         return validExtensions.contains(extension);
     }
+
+    // generated using Chatgpt
+    DecimalFormat integerFormat = new DecimalFormat("0");
+    StringConverter<Number> integerStringConverter = new StringConverter<>() {
+        @Override
+        public String toString(Number object) {
+            return integerFormat.format(object);
+        }
+
+        @Override
+        public Number fromString(String string) {
+            try {
+                return integerFormat.parse(string);
+            } catch (Exception e) {
+                return 0;
+            }
+        }
+    };
+
 }
