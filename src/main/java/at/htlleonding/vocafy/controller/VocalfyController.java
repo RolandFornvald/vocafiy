@@ -1,24 +1,19 @@
 package at.htlleonding.vocafy.controller;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
-import model.Playlist;
-import model.Song;
+import at.htlleonding.vocafy.model.Playlist;
+import at.htlleonding.vocafy.model.Song;
 
 import java.io.File;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -50,13 +45,14 @@ public class VocalfyController {
     private String songPath;
     private String imagePath = System.getProperty("user.dir") + "/resources/at.htlleonding.vocafy/noImage.png";
     private MediaPlayer mediaPlayer;
-    private Playlist playlist = new Playlist();
+    private final Playlist playlist = new Playlist();
 
     @FXML
     private void initialize() {
         ObservableList<Song> songs = playlist.getSongs();
         FilteredList<Song> filteredSongs = songs.sorted().filtered(null);
         songsListView.setItems(filteredSongs);
+
         prevButton.getStyleClass().addAll("round-button", "prev-shape");
         pauseButton.getStyleClass().addAll("round-button", "pause-shape");
         nextButton.getStyleClass().addAll("round-button", "next-shape");

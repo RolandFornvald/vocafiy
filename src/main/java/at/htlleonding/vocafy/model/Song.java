@@ -1,4 +1,4 @@
-package model;
+package at.htlleonding.vocafy.model;
 
 public class Song {
     private final String songPath;

@@ -1,4 +1,4 @@
-package model;
+package at.htlleonding.vocafy.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +17,7 @@ public class Playlist {
     }
 
     public void addSong(Song song) {
-        String sql = "INSERT INTO songs (title, songPath, imagePath) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO SONGS (title, songPath, imagePath) VALUES (?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection("jdbc:derby:songsdb");
              PreparedStatement stmt = connection.prepareStatement(sql))
@@ -35,17 +35,17 @@ public class Playlist {
     }
 
     private void loadSongsFromDatabase() {
-        String sql = "SELECT * FROM songs";
+        String sql = "SELECT title, songPath, imagePath FROM SONGS";
         try (Connection connection = DriverManager.getConnection("jdbc:derby:songsdb");
              Statement stmt = connection.prepareStatement(sql))
         {
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 String title = rs.getString("title");
-                String path = rs.getString("path");
+                String songPath = rs.getString("songPath");
                 String imagePath = rs.getString("imagePath");
 
-                Song song = new Song(title, path, imagePath);
+                Song song = new Song(title, songPath, imagePath);
                 songs.add(song);
             }
         } catch (SQLException e) {
