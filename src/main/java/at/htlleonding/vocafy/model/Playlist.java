@@ -37,9 +37,10 @@ public class Playlist {
     private void loadSongsFromDatabase() {
         String sql = "SELECT title, songPath, imagePath FROM SONGS";
         try (Connection connection = DriverManager.getConnection("jdbc:derby:songsdb");
-             Statement stmt = connection.prepareStatement(sql))
+             PreparedStatement stmt = connection.prepareStatement(sql))
         {
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery();
+            System.out.println("test");
             while (rs.next()) {
                 String title = rs.getString("title");
                 String songPath = rs.getString("songPath");
